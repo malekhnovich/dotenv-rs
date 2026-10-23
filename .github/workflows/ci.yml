@@ -1,0 +1,29 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ['3.9', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv sync
+      - run: uv run ruff check python tests benchmarks
+      - run: uv run pytest
+      - run: cargo test
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets -- -D warnings
+      - run: uv run maturin build --release --out dist
+      - run: uv run maturin sdist --out dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distributions-${{ matrix.os }}-${{ matrix.python }}
+          path: dist/*
