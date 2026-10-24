@@ -8,7 +8,8 @@ version = "0.1.0a1"
 description = "A Rust-powered dotenv parser for Python"
 readme = "README.md"
 requires-python = ">=3.10"
-license = "MIT"
+license = "MIT AND BSD-3-Clause"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
 classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Rust", "Programming Language :: Python :: 3"]
 
 [project.urls]

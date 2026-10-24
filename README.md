@@ -109,4 +109,5 @@ Add publication and measured performance results only once achieved.
 
 ## License
 
-MIT. See LICENSE.
+Original code: MIT. Adapted upstream portions: BSD-3-Clause.
+See [LICENSE](LICENSE) and [third-party notices](THIRD_PARTY_NOTICES.md).
