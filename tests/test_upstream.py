@@ -20,5 +20,8 @@ def test_upstream_parser(case):
 
 @pytest.mark.parametrize("case", json.loads((FIXTURES / "values.json").read_text(encoding="utf-8")))
 def test_upstream_values(case):
-    with patch.dict("os.environ", case["env"], clear=True):
+    # Upstream skips these cases on Windows: their expectations assume POSIX
+    # case sensitivity. Use a plain mapping here and exercise real OS semantics
+    # separately in test_io_and_diagnostics.py, on every platform.
+    with patch("os.environ", dict(case["env"])):
         assert dotenv_values(stream=StringIO(case["text"]), interpolate=case["interpolate"]) == case["expected"]

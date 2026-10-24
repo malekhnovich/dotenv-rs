@@ -9,6 +9,11 @@ https://github.com/theskumar/python-dotenv/tree/v1.2.4/tests
 The interactive discovery tests in ../test_interactive.py are also adapted from
 `test_is_interactive.py`, with only the import changed and this attribution added.
 
+Upstream skips the value fixture function on Windows because it assumes
+case-sensitive environment names. Our fixture adapter uses a plain environment
+mapping to retain all original expected results on every OS; a separate
+platform-native differential test checks real `os.environ` case behavior.
+
 These cover selected upstream surfaces, not the entire upstream suite. Internal token metadata,
 file editing, CLI, IPython, and utility tests are not represented here.
 Retained under the upstream BSD-3-Clause license in LICENSE.

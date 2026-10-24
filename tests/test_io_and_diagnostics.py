@@ -61,3 +61,14 @@ def test_disabled_flags_match(flag, monkeypatch):
             result = function(stream=StringIO("DOTENV_RS_FLAG=yes"))
             results.append((result, dict(os.environ)))
     assert results[0] == results[1]
+
+
+@pytest.mark.parametrize("env_key", ["dotenv_rs_case", "DOTENV_RS_CASE"])
+@pytest.mark.parametrize("lookup", ["dotenv_rs_case", "DOTENV_RS_CASE"])
+def test_environment_name_case_matches_reference(env_key, lookup):
+    from unittest.mock import patch
+
+    # Exercise the native environment on Windows too: do not assume POSIX casing.
+    with patch.dict("os.environ", {env_key: "environment"}, clear=True):
+        text = f"VALUE=${{{lookup}:-fallback}}"
+        assert dotenv_values(stream=StringIO(text)) == reference(stream=StringIO(text))
