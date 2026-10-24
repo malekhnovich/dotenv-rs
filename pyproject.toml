@@ -4,15 +4,19 @@ build-backend = "maturin"
 
 [project]
 name = "dotenv-rs"
-version = "0.1.0"
+version = "0.1.0a1"
 description = "A Rust-powered dotenv parser for Python"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "MIT"
 classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Rust", "Programming Language :: Python :: 3"]
 
+[project.urls]
+Repository = "https://github.com/malekhnovich/dotenv-rs"
+Issues = "https://github.com/malekhnovich/dotenv-rs/issues"
+
 [dependency-groups]
-dev = ["pytest>=8", "python-dotenv>=1.2,<2", "maturin>=1.8,<2", "ruff>=0.11"]
+dev = ["pytest>=8", "python-dotenv==1.2.4", "maturin>=1.8,<2", "ruff>=0.11", "hypothesis>=6.130", "twine>=6"]
 
 [tool.maturin]
 python-source = "python"

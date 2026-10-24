@@ -1,0 +1,585 @@
+[
+  {
+    "text": "",
+    "entries": [],
+    "errors": []
+  },
+  {
+    "text": "a=b",
+    "entries": [
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "'a'=b",
+    "entries": [
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "[=b",
+    "entries": [
+      [
+        "[",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": " a = b ",
+    "entries": [
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "export a=b",
+    "entries": [
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": " export 'a'=b",
+    "entries": [
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "# a=b",
+    "entries": [],
+    "errors": []
+  },
+  {
+    "text": "a=b#c",
+    "entries": [
+      [
+        "a",
+        "b#c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b #c",
+    "entries": [
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b\t#c",
+    "entries": [
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a= #b",
+    "entries": [
+      [
+        "a",
+        ""
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=  # b",
+    "entries": [
+      [
+        "a",
+        ""
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=#b",
+    "entries": [
+      [
+        "a",
+        "#b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=# # comment",
+    "entries": [
+      [
+        "a",
+        "#"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\t#c",
+    "entries": [
+      [
+        "a",
+        ""
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a= #c\nd=e",
+    "entries": [
+      [
+        "a",
+        ""
+      ],
+      [
+        "d",
+        "e"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b c",
+    "entries": [
+      [
+        "a",
+        "b c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b\tc",
+    "entries": [
+      [
+        "a",
+        "b\tc"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b  c",
+    "entries": [
+      [
+        "a",
+        "b  c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b  c",
+    "entries": [
+      [
+        "a",
+        "b  c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b c ",
+    "entries": [
+      [
+        "a",
+        "b c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a='b c '",
+    "entries": [
+      [
+        "a",
+        "b c "
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\"b c \"",
+    "entries": [
+      [
+        "a",
+        "b c "
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "export export_a=1",
+    "entries": [
+      [
+        "export_a",
+        "1"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "export port=8000",
+    "entries": [
+      [
+        "port",
+        "8000"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\"b\nc\"",
+    "entries": [
+      [
+        "a",
+        "b\nc"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a='b\nc'",
+    "entries": [
+      [
+        "a",
+        "b\nc"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\"b\nc\"",
+    "entries": [
+      [
+        "a",
+        "b\nc"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\"b\\nc\"",
+    "entries": [
+      [
+        "a",
+        "b\nc"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a='b\\nc'",
+    "entries": [
+      [
+        "a",
+        "b\\nc"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\"b\\\"c\"",
+    "entries": [
+      [
+        "a",
+        "b\"c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a='b\\'c'",
+    "entries": [
+      [
+        "a",
+        "b'c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a='b\\\\c'",
+    "entries": [
+      [
+        "a",
+        "b\\c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\"b\\\\c\"",
+    "entries": [
+      [
+        "a",
+        "b\\c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a='b\\\\'\nc='d'",
+    "entries": [
+      [
+        "a",
+        "b\\"
+      ],
+      [
+        "c",
+        "d"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\"b\\\\\"\nc=\"d\"",
+    "entries": [
+      [
+        "a",
+        "b\\"
+      ],
+      [
+        "c",
+        "d"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a='b\\\\\\'c'",
+    "entries": [
+      [
+        "a",
+        "b\\'c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=à",
+    "entries": [
+      [
+        "a",
+        "à"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\"à\"",
+    "entries": [
+      [
+        "a",
+        "à"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "no_value_var",
+    "entries": [
+      [
+        "no_value_var",
+        null
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a: b",
+    "entries": [],
+    "errors": [
+      1
+    ]
+  },
+  {
+    "text": "a=b\nc=d",
+    "entries": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "c",
+        "d"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b\rc=d",
+    "entries": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "c",
+        "d"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b\r\nc=d",
+    "entries": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "c",
+        "d"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\nb=c",
+    "entries": [
+      [
+        "a",
+        ""
+      ],
+      [
+        "b",
+        "c"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "\n\n",
+    "entries": [],
+    "errors": []
+  },
+  {
+    "text": "a=b\n\n",
+    "entries": [
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b\n\nc=d",
+    "entries": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "c",
+        "d"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=\"\nb=c",
+    "entries": [
+      [
+        "b",
+        "c"
+      ]
+    ],
+    "errors": [
+      1
+    ]
+  },
+  {
+    "text": "# comment\na=\"b\nc\"\nd=e\n",
+    "entries": [
+      [
+        "a",
+        "b\nc"
+      ],
+      [
+        "d",
+        "e"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "a=b\n# comment 1",
+    "entries": [
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "# comment 1\n# comment 2",
+    "entries": [],
+    "errors": []
+  },
+  {
+    "text": "uglyKey[%$=\"S3cr3t_P4ssw#rD\" #\na=b",
+    "entries": [
+      [
+        "uglyKey[%$",
+        "S3cr3t_P4ssw#rD"
+      ],
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "﻿a=b",
+    "entries": [
+      [
+        "a",
+        "b"
+      ]
+    ],
+    "errors": []
+  },
+  {
+    "text": "﻿a=b\nc=d",
+    "entries": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "c",
+        "d"
+      ]
+    ],
+    "errors": []
+  }
+]

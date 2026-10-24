@@ -1,7 +1,8 @@
 # dotenv-rs
 
 A Python dotenv package with a Rust parser, PyO3 bindings, and maturin packaging.
-Early alpha: the distribution name is provisional and this package is not yet published.
+An independent implementation of the core `python-dotenv` loading APIs.
+Pre-release: not yet published on PyPI. Requires CPython 3.10+.
 
 ```python
 from dotenv_rs import dotenv_values, load_dotenv
@@ -15,9 +16,49 @@ multiline quoted values, escapes, and keys without values. Python handles file
 I/O, `${NAME}` / `${NAME:-default}` expansion, and environment updates.
 It has no Python runtime dependencies.
 
+## Benchmarks
+
+<!-- BENCHMARKS:START -->
+Measured 2026-10-24 UTC on Apple M4 Pro, macOS-26.2-arm64-arm-64bit-Mach-O, CPython 3.13.2; python-dotenv 1.2.4 and dotenv-rs 0.1.0a1. Rust release build.
+
+| Workload | Bindings | python-dotenv | dotenv-rs | Speedup |
+| --- | ---: | ---: | ---: | ---: |
+| plain | 10 | 136.5 µs | 11.2 µs | 12.2× |
+| plain | 100 | 1,444.1 µs | 42.7 µs | 33.8× |
+| plain | 1,000 | 19,157.1 µs | 364.3 µs | 52.6× |
+| quoted | 10 | 146.8 µs | 11.7 µs | 12.6× |
+| quoted | 100 | 1,506.0 µs | 46.0 µs | 32.8× |
+| quoted | 1,000 | 20,107.5 µs | 393.2 µs | 51.1× |
+| interpolation | 10 | 145.7 µs | 14.7 µs | 9.9× |
+| interpolation | 100 | 1,556.0 µs | 79.3 µs | 19.6× |
+| interpolation | 1,000 | 19,415.0 µs | 732.0 µs | 26.5× |
+| unicode_multiline | 10 | 148.8 µs | 12.6 µs | 11.8× |
+| unicode_multiline | 100 | 1,516.2 µs | 52.6 µs | 28.8× |
+| unicode_multiline | 1,000 | 20,078.0 µs | 461.3 µs | 43.5× |
+<!-- BENCHMARKS:END -->
+
+Median time per `dotenv_values(stream=StringIO(...))` call, including Python/Rust
+conversion and interpolation. Seven repeats per workload; implementation order
+is shuffled with a fixed seed. Both implementations receive identical data and
+40 synthetic environment variables; outputs are checked for equality first.
+File I/O, interpreter startup, and package import are excluded.
+These are synthetic single-machine measurements, not guarantees for every `.env`
+file or evidence that application startup becomes proportionally faster.
+
+Reproduce (requires Rust):
+
+```sh
+uv sync --locked
+uv run maturin develop --release
+uv run python benchmarks/compare.py --update-readme
+```
+
+[Raw timings and environment](benchmarks/results.json) · [Benchmark source](benchmarks/compare.py)
+
 ## Development
 
-Requires Rust 1.86+, Python 3.9+, and uv.
+Requires Rust 1.86+, Python 3.10+, and uv.
+After changing Rust code, run `uv run maturin develop --release` to rebuild the extension.
 
 ```sh
 uv sync
@@ -25,7 +66,8 @@ uv run pytest
 cargo test
 cargo fmt --check
 cargo clippy --all-targets -- -D warnings
-uv run python benchmarks/compare.py
+uv run maturin develop --release
+uv run python benchmarks/compare.py --update-readme
 uv run maturin build --release --out dist
 uv run maturin sdist --out dist
 ```
@@ -34,19 +76,30 @@ uv run maturin sdist --out dist
 
 Inspired by python-dotenv; this is an independent implementation. Import using
 `dotenv_rs`, leaving the upstream `dotenv` namespace available for comparisons.
-Differential tests compare supported behavior against python-dotenv.
-Full drop-in compatibility is a goal, not a current guarantee. Discovery starts
-at cwd rather than the caller's script. Invalid lines are skipped silently.
-File editing helpers, IPython integration, and the upstream CLI are not implemented.
-No speedup is claimed until reproducible benchmarks establish one.
+Compatibility is checked against **python-dotenv 1.2.4**, pinned in development dependencies:
+
+- All upstream parameterized parser cases and value/interpolation cases are retained
+  as fixtures, with their original license and source provenance in [tests/upstream](tests/upstream).
+- Hypothesis runs 2,000 parser comparisons and 1,000 public API comparisons per suite,
+  including malformed input, Unicode, escapes, and duplicate bindings.
+- Tests compare environment precedence, return values, error line numbers, and
+  discovery from scripts launched outside their working directory.
+- CI checks Linux, macOS, and Windows, plus clean installations of built wheels.
+
+**Scope:** `load_dotenv`, `dotenv_values`, and `find_dotenv`. Import from `dotenv_rs`.
+The internal `DotEnv` class, `get_key`/`set_key`/`unset_key`, CLI, and IPython
+integration are not implemented. The original `dotenv` namespace stays available.
+Returned mappings are ordinary insertion-ordered Python dictionaries rather than
+`OrderedDict`. Text containing unpaired Unicode surrogates is unsupported. Diagnostics use the `dotenv_rs` logger, with upstream message text.
+This is an alpha, not a claim of complete drop-in compatibility or zero bugs.
+See [COMPATIBILITY.md](COMPATIBILITY.md) for the release criteria.
 
 ## Publishing
 
-Before a first release: select an available PyPI name, update package metadata,
-expand compatibility coverage, and test wheels on Linux, macOS, and Windows.
-Build a wheel and source distribution with the commands above. Configure PyPI
-Trusted Publishing for the GitHub repository and a protected release environment
-before adding an automated upload job. Never commit PyPI tokens or dotenv secrets.
+The [release workflow](.github/workflows/release.yml) builds portable wheels,
+runs clean-install checks, validates metadata, and uploads through PyPI Trusted
+Publishing. [RELEASING.md](RELEASING.md) has the one-time setup and release commands.
+Releases remain alpha until the compatibility criteria pass.
 
 ## Portfolio
 

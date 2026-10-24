@@ -1,0 +1,193 @@
+[
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "a=$b",
+    "interpolate": false,
+    "expected": {
+      "a": "$b"
+    }
+  },
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "a=$b",
+    "interpolate": true,
+    "expected": {
+      "a": "$b"
+    }
+  },
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "a=${b}",
+    "interpolate": false,
+    "expected": {
+      "a": "${b}"
+    }
+  },
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "a=${b}",
+    "interpolate": true,
+    "expected": {
+      "a": "c"
+    }
+  },
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "a=${b:-d}",
+    "interpolate": false,
+    "expected": {
+      "a": "${b:-d}"
+    }
+  },
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "a=${b:-d}",
+    "interpolate": true,
+    "expected": {
+      "a": "c"
+    }
+  },
+  {
+    "env": {},
+    "text": "b=c\na=${b}",
+    "interpolate": true,
+    "expected": {
+      "a": "c",
+      "b": "c"
+    }
+  },
+  {
+    "env": {},
+    "text": "a=${b}",
+    "interpolate": true,
+    "expected": {
+      "a": ""
+    }
+  },
+  {
+    "env": {},
+    "text": "a=${b:-d}",
+    "interpolate": true,
+    "expected": {
+      "a": "d"
+    }
+  },
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "a=\"${b}\"",
+    "interpolate": true,
+    "expected": {
+      "a": "c"
+    }
+  },
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "a='${b}'",
+    "interpolate": true,
+    "expected": {
+      "a": "c"
+    }
+  },
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "a=x${b}y",
+    "interpolate": true,
+    "expected": {
+      "a": "xcy"
+    }
+  },
+  {
+    "env": {
+      "a": "b"
+    },
+    "text": "a=${a}",
+    "interpolate": true,
+    "expected": {
+      "a": "b"
+    }
+  },
+  {
+    "env": {},
+    "text": "a=${a}",
+    "interpolate": true,
+    "expected": {
+      "a": ""
+    }
+  },
+  {
+    "env": {
+      "a": "b"
+    },
+    "text": "a=${a:-c}",
+    "interpolate": true,
+    "expected": {
+      "a": "b"
+    }
+  },
+  {
+    "env": {},
+    "text": "a=${a:-c}",
+    "interpolate": true,
+    "expected": {
+      "a": "c"
+    }
+  },
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "a=${b}${b}",
+    "interpolate": true,
+    "expected": {
+      "a": "cc"
+    }
+  },
+  {
+    "env": {
+      "b": "c"
+    },
+    "text": "b=d\na=${b}",
+    "interpolate": true,
+    "expected": {
+      "a": "d",
+      "b": "d"
+    }
+  },
+  {
+    "env": {},
+    "text": "a=b\na=c\nd=${a}",
+    "interpolate": true,
+    "expected": {
+      "a": "c",
+      "d": "c"
+    }
+  },
+  {
+    "env": {},
+    "text": "a=b\nc=${a}\nd=e\nc=${d}",
+    "interpolate": true,
+    "expected": {
+      "a": "b",
+      "c": "e",
+      "d": "e"
+    }
+  }
+]
