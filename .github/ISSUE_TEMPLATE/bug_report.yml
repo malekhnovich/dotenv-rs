@@ -1,0 +1,47 @@
+name: Bug or compatibility difference
+description: Report a parsing, environment, discovery, or installation problem.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing the alpha. Use a minimal example with synthetic values; do not paste real secrets.
+        Compatibility currently targets python-dotenv 1.2.4 for load_dotenv, dotenv_values, and find_dotenv.
+  - type: input
+    id: package-version
+    attributes:
+      label: dotenv-rs version
+      description: Run python -m pip show dotenv-rs.
+      placeholder: 0.1.0a1
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: Python, operating system, and architecture
+      placeholder: CPython 3.13, macOS, arm64
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include the Python snippet, synthetic .env contents, and install command if relevant.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: For a compatibility report, include what python-dotenv 1.2.4 returns for the same input and environment.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the output or complete traceback, with secrets removed.
+      render: text
+    validations:
+      required: true

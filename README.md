@@ -1,5 +1,8 @@
 # dotenv-rs
 
+[![CI](https://github.com/malekhnovich/dotenv-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/malekhnovich/dotenv-rs/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/dotenv-rs?include_prereleases)](https://pypi.org/project/dotenv-rs/)
+
 A Python dotenv package with a Rust parser, PyO3 bindings, and maturin packaging.
 An independent implementation of the core `python-dotenv` loading APIs.
 [Available on PyPI](https://pypi.org/project/dotenv-rs/0.1.0a1/) as an alpha release.
@@ -20,6 +23,23 @@ The Rust core parses quoted and unquoted values, export directives, comments,
 multiline quoted values, escapes, and keys without values. Python handles file
 I/O, `${NAME}` / `${NAME:-default}` expansion, and environment updates.
 It has no Python runtime dependencies.
+
+## Try the demo
+
+The [one-minute demo](examples/README.md) shows interpolation, escaped newlines,
+and environment precedence using synthetic values:
+
+```sh
+uv run --no-project --with dotenv-rs==0.1.0a1 python examples/demo.py
+```
+
+Run this from a checkout of the repo. You can also use the pip installation above
+and run `python examples/demo.py`. No Rust compiler is needed on the wheel targets:
+Linux x86-64/ARM64, macOS Intel/Apple Silicon, and Windows x86-64.
+
+Moving from python-dotenv? Change `from dotenv import ...` to
+`from dotenv_rs import ...` for the three supported loading APIs. Review the
+[compatibility limits](COMPATIBILITY.md) before replacing it in an application.
 
 ## Benchmarks
 
@@ -68,6 +88,7 @@ After changing Rust code, run `uv run maturin develop --release` to rebuild the 
 ```sh
 uv sync
 uv run pytest
+uv run python examples/demo.py
 cargo test
 cargo fmt --check
 cargo clippy --all-targets -- -D warnings
@@ -106,14 +127,14 @@ runs clean-install checks, validates metadata, and uploads through PyPI Trusted
 Publishing. [RELEASING.md](RELEASING.md) has the one-time setup and release commands.
 Releases remain alpha until the compatibility criteria pass.
 
-## Portfolio
+## Feedback and contributing
 
-“Published a Rust-backed Python dotenv package to PyPI using PyO3 and maturin,
-with wheels for five platforms and 219 tests plus 3,000 generated compatibility
-comparisons against python-dotenv.”
+Testing the alpha? [Report a bug or installation problem](https://github.com/malekhnovich/dotenv-rs/issues/new?template=bug_report.yml)
+with your package version, Python version, OS/architecture, and a small reproducer.
+For compatibility differences, include the result from python-dotenv 1.2.4.
+Use synthetic values instead of real secrets.
 
-For performance claims, cite the benchmark workload and hardware; the table above
-measures in-memory loading, not overall application startup.
+[Contribution guide](CONTRIBUTING.md) · [Feature requests](https://github.com/malekhnovich/dotenv-rs/issues/new?template=feature_request.yml)
 
 ## License
 

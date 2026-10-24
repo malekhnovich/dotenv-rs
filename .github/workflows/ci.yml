@@ -19,7 +19,8 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: uv sync --locked
-      - run: uv run ruff check python tests benchmarks scripts
+      - run: uv run ruff check python tests benchmarks scripts examples
+      - run: uv run python examples/demo.py
       - run: uv run pytest
       - run: cargo test --locked
       - run: cargo fmt --check
