@@ -2,7 +2,12 @@
 
 A Python dotenv package with a Rust parser, PyO3 bindings, and maturin packaging.
 An independent implementation of the core `python-dotenv` loading APIs.
-Pre-release: not yet published on PyPI. Requires CPython 3.10+.
+[Available on PyPI](https://pypi.org/project/dotenv-rs/0.1.0a1/) as an alpha release.
+Requires CPython 3.10+.
+
+```sh
+pip install dotenv-rs==0.1.0a1
+```
 
 ```python
 from dotenv_rs import dotenv_values, load_dotenv
@@ -103,9 +108,12 @@ Releases remain alpha until the compatibility criteria pass.
 
 ## Portfolio
 
-An accurate description of the current project: “Built a Python dotenv package
-with a Rust parser, PyO3 bindings, maturin packaging, and differential tests.”
-Add publication and measured performance results only once achieved.
+“Published a Rust-backed Python dotenv package to PyPI using PyO3 and maturin,
+with wheels for five platforms and 219 tests plus 3,000 generated compatibility
+comparisons against python-dotenv.”
+
+For performance claims, cite the benchmark workload and hardware; the table above
+measures in-memory loading, not overall application startup.
 
 ## License
 
